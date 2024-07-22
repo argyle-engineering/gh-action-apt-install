@@ -21,7 +21,7 @@ do_post() {
   else
     echo Cache miss, installing and caching packages.
     mkdir -p $CACHE_DIR
-    apt update
+    sudo apt update
     sudo DEBIAN_FRONTEND=noninteractive apt --yes install $INPUTS_PACKAGES | tee $CACHE_LOG
     local installed=$(cat $CACHE_LOG | grep Unpacking | awk '{print $2}')
     if [[ -z $installed ]]; then
